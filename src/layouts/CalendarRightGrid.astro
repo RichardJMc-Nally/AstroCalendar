@@ -1,0 +1,434 @@
+---
+import "../styles/global.css";
+---
+
+<div class="parent">
+	<div class="cell1">
+		<slot name="cell1" />
+	</div>
+
+	<div class="cell2">
+		<slot name="cell2" />
+	</div>
+
+	<div class="cell3">
+		<slot name="cell3" />
+	</div>
+	<div class="cell4">
+		<slot name="cell4" />
+	</div>
+	<div class="cell5">
+		<slot name="cell5" />
+	</div>
+	<div class="cell6">
+		<slot name="cell6" />
+	</div>
+	<div class="cell7">
+		<slot name="cell7" />
+	</div>
+	<div class="cell8">
+		<slot name="cell8" />
+	</div>
+	<div class="cell9">
+		<slot name="cell9" />
+	</div>
+
+	<div class="cell10">
+		<slot name="cell10" />
+	</div>
+	<div class="cell11">
+		<slot name="cell11" />
+	</div>
+	<div class="cell12">
+		<slot name="cell12" />
+	</div>
+	<div class="cell13">
+		<slot name="cell13" />
+	</div>
+	<div class="cell14">
+		<slot name="cell14" />
+	</div>
+	<div class="cell15">
+		<slot name="cell15" />
+	</div>
+	<div class="cell16">
+		<slot name="cell16" />
+	</div>
+
+	<div class="cell17">
+		<slot name="cell17" />
+	</div>
+	<div class="cell18">
+		<slot name="cell18" />
+	</div>
+	<div class="cell19">
+		<slot name="cell19" />
+	</div>
+	<div class="cell20">
+		<slot name="cell20" />
+	</div>
+	<div class="cell21">
+		<slot name="cell21" />
+	</div>
+	<div class="cell22">
+		<slot name="cell22" />
+	</div>
+	<div class="cell23">
+		<slot name="cell23" />
+	</div>
+
+	<div class="cell24">
+		<slot name="cell24" />
+	</div>
+	<div class="cell25">
+		<slot name="cell25" />
+	</div>
+	<div class="cell26">
+		<slot name="cell26" />
+	</div>
+	<div class="cell27">
+		<slot name="cell27" />
+	</div>
+	<div class="cell28">
+		<slot name="cell28" />
+	</div>
+	<div class="cell29">
+		<slot name="cell29" />
+	</div>
+	<div class="cell30">
+		<slot name="cell30" />
+	</div>
+
+	<div class="cell31">
+		<slot name="cell31" />
+	</div>
+	<div class="cell32">
+		<slot name="cell32" />
+	</div>
+	<div class="cell33">
+		<slot name="cell33" />
+	</div>
+	<div class="cell34">
+		<slot name="cell34" />
+	</div>
+	<div class="cell35">
+		<slot name="cell35" />
+	</div>
+	<div class="cell36">
+		<slot name="cell36" />
+	</div>
+	<div class="cell37">
+		<slot name="cell37" />
+	</div>
+
+	<div class="cell38">
+		<slot name="cell38" />
+	</div>
+	<div class="cell39">
+		<slot name="cell39" />
+	</div>
+	<div class="cell40">
+		<slot name="cell40" />
+	</div>
+	<div class="cell41">
+		<slot name="cell41" />
+	</div>
+	<div class="cell42">
+		<slot name="cell42" />
+	</div>
+	<div class="cell43">
+		<slot name="cell43" />
+	</div>
+	<div class="cell44">
+		<slot name="cell44" />
+	</div>
+
+	<div class="cell45">
+		<slot name="cell45" />
+	</div>
+	<div class="cell46">
+		<slot name="cell46" />
+	</div>
+	<div class="cell47">
+		<slot name="cell47" />
+	</div>
+	<div class="cell48">
+		<slot name="cell48" />
+	</div>
+	<div class="cell49">
+		<slot name="cell49" />
+	</div>
+	<div class="cell50">
+		<slot name="cell50" />
+	</div>
+	<div class="cell51">
+		<slot name="cell51" />
+	</div>
+</div>
+
+<style>
+	.parent {
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
+		grid-template-rows: repeat(9, 50px);
+		column-gap: 6px;
+		row-gap:10px;
+		height: 100%;
+		width: 100%;
+		border-top-right-radius: 20px;
+		border-bottom-right-radius: 20px;
+		background-color: #ffffff;
+		padding: 10px 16px 16px 16px;
+		box-sizing: border-box;
+	}
+
+	.cell1 {
+		grid-area: 1 / 1 / 2 / 8;
+	}
+  
+	.cell2 {
+    grid-area: 2 / 1 / 3 / 8;
+	}
+  
+	.cell3 {
+    grid-area: 3 / 1 / 4 / 2;
+	}
+  
+	.cell4 {
+    grid-area: 3 / 2 / 4 / 3;
+	}
+  
+	.cell5 {
+    grid-area: 3 / 3 / 4 / 4;
+	}
+  
+	.cell6 {
+    grid-area: 3 / 4 / 4 / 5;
+	}
+  
+	.cell7 {
+    grid-area: 3 / 5 / 4 / 6;
+	}
+  
+	.cell8 {
+    grid-area: 3 / 6 / 4 / 7;
+	}
+  
+	.cell9 {
+    grid-area: 3 / 7 / 4 / 8;
+	}
+  
+  /* Date Cells Start Here */
+	.cell10 {
+    grid-area: 4 / 1 / 5 / 2;
+	}
+
+	.cell11 {
+		grid-area: 4 / 2 / 5 / 3;
+	}
+
+	.cell12 {
+		grid-area: 4 / 3 / 5 / 4;
+	}
+
+	.cell13 {
+		grid-area: 4 / 4 / 5 / 5;
+	}
+
+	.cell14 {
+		grid-area: 4 / 5 / 5 / 6;
+	}
+
+	.cell15 {
+		grid-area: 4 / 6 / 5 / 7;
+	}
+
+	.cell16 {
+		grid-area: 4 / 7 / 5 / 8;
+	}
+
+	.cell17 {
+		grid-area: 5 / 1 / 6 / 2;
+	}
+
+	.cell18 {
+		grid-area: 5 / 2 / 6 / 3;
+	}
+
+	.cell19 {
+		grid-area: 5 / 3 / 6 / 4;
+	}
+
+	.cell20 {
+		grid-area: 5 / 4 / 6 / 5;
+	}
+
+	.cell21 {
+		grid-area: 5 / 5 / 6 / 6;
+	}
+
+	.cell22 {
+		grid-area: 5 / 6 / 6 / 7;
+	}
+
+	.cell23 {
+		grid-area: 5 / 7 / 6 / 8;
+	}
+
+	.cell24 {
+		grid-area: 6 / 1 / 7 / 2;
+	}
+
+	.cell25 {
+		grid-area: 6 / 2 / 7 / 3;
+	}
+
+	.cell26 {
+		grid-area: 6 / 3 / 7 / 4;
+	}
+
+	.cell27 {
+		grid-area: 6 / 4 / 7 / 5;
+	}
+
+	.cell28 {
+		grid-area: 6 / 5 / 7 / 6;
+	}
+
+	.cell29 {
+		grid-area: 6 / 6 / 7 / 7;
+	}
+
+	.cell30 {
+		grid-area: 6 / 7 / 7 / 8;
+	}
+
+	.cell31 {
+		grid-area: 7 / 1 / 8 / 2;
+	}
+
+	.cell32 {
+		grid-area: 7 / 2 / 8 / 3;
+	}
+
+	.cell33 {
+		grid-area: 7 / 3 / 8 / 4;
+	}
+
+	.cell34 {
+		grid-area: 7 / 4 / 8 / 5;
+	}
+
+	.cell35 {
+		grid-area: 7 / 5 / 8 / 6;
+	}
+
+	.cell36 {
+		grid-area: 7 / 6 / 8 / 7;
+	}
+
+	.cell37 {
+		grid-area: 7 / 7 / 8 / 8;
+	}
+
+	.cell38 {
+		grid-area: 8 / 1 / 9 / 2;
+	}
+
+	.cell39 {
+		grid-area: 8 / 2 / 9 / 3;
+	}
+
+	.cell40 {
+		grid-area: 8 / 3 / 9 / 4;
+	}
+
+	.cell41 {
+		grid-area: 8 / 4 / 9 / 5;
+	}
+
+	.cell42 {
+		grid-area: 8 / 5 / 9 / 6;
+	}
+
+	.cell43 {
+		grid-area: 8 / 6 / 9 / 7;
+	}
+
+	.cell44 {
+		grid-area: 8 / 7 / 9 / 8;
+	}
+
+	.cell45 {
+		grid-area: 9 / 1 / 10 / 2;
+	}
+
+	.cell46 {
+		grid-area: 9 / 2 / 10 / 3;
+	}
+
+	.cell47 {
+		grid-area: 9 / 3 / 10 / 4;
+	}
+
+	.cell48 {
+		grid-area: 9 / 4 / 10 / 5;
+	}
+
+	.cell49 {
+		grid-area: 9 / 5 / 10 / 6;
+	}
+
+	.cell50 {
+		grid-area: 9 / 6 / 10 / 7;
+	}
+	.cell51 {
+		grid-area: 9 / 7 / 10 / 8;
+	}
+
+  .cell10,
+  .cell11,
+  .cell12,
+  .cell13,
+  .cell14,
+  .cell15,
+  .cell16,
+  .cell17,
+  .cell18,
+  .cell19,
+  .cell20,
+  .cell21,
+  .cell22,
+  .cell23,
+  .cell24,
+  .cell25,
+  .cell26,
+  .cell27,
+  .cell28,
+  .cell29,
+  .cell30,
+  .cell31,
+  .cell32,
+  .cell33,
+  .cell34,
+  .cell35,
+  .cell36,
+  .cell37,
+  .cell38,
+  .cell39,
+  .cell40,
+  .cell41,
+  .cell42,
+  .cell43,
+  .cell44,
+  .cell45,
+  .cell46,
+  .cell47,
+  .cell48,
+  .cell49,
+  .cell50,
+  .cell51 {
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+</style>

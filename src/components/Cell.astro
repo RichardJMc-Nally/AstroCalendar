@@ -1,0 +1,43 @@
+---
+import "../styles/global.css";
+
+const { isCheckedOff = false, number = null, isPrePost = false, extraClass = '' } = Astro.props;
+
+const textClass = `cell__text ${isPrePost ? 'pre__postDate' : ''}`;
+
+const cellClassList = `cell ${isCheckedOff ? 'checkedOff' : ''} ${extraClass}`;
+---
+
+<div class={cellClassList}>
+  {number !== null ? <div class={textClass}>{number}</div> : <slot />}
+</div>
+
+<style>
+  .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.25);
+    border-radius: 20px;
+  }
+
+  .checkedOff {
+		box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25) inset !important;
+		background-color: #f5f5f5;
+	}
+
+  .cell__text {
+		font-size: 18px;
+		font-weight: bold;
+		color: #3B3B3B;
+	}
+
+  .pre__postDate {
+		color: #FF3C3C !important;
+	}
+</style>
+
+<!-- Usage: -->
+<!-- <Cell isCheckedOff={false} number={0} isPrePost={false} /> -->

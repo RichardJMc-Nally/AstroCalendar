@@ -1,0 +1,29 @@
+---
+import '../styles/global.css';
+---
+
+<div class="parent">
+  <div class="cell1">
+    <slot name="gridL" />
+  </div>
+  <div class="cell2">
+    <slot name="gridR" />
+  </div>
+</div>
+
+<style>
+  .parent {
+    display: grid;
+    grid-template-columns: 300px 2fr;
+    grid-template-rows: 1fr;
+    column-gap: 0;
+    row-gap: 0;
+    height: 560px;    
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.25);
+    border-radius: 20px;
+    box-sizing: border-box;
+  }
+
+  .cell1 { grid-area: 1 / 1 / 2 / 2; }
+  .cell2 { grid-area: 1 / 2 / 2 / 3; }
+</style>
