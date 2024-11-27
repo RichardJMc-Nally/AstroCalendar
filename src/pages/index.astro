@@ -4,6 +4,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import CalendarMainGrid from "../layouts/CalendarMainGrid.astro";
 import CalendarLeftGrid from "../layouts/CalendarLeftGrid.astro";
 import CalendarRightGrid from "../layouts/CalendarRightGrid.astro";
+import Cell from "../components/Cell.astro";
+import Counter from "../components/Counter.astro";
+import MonthNavigation from "../components/MonthNavigation.astro";
+import DateDisplay from "../components/DateDisplay.astro";
 
 const todayDate = new Date();
 const endDate = new Date("2024-12-21");
@@ -16,8 +20,7 @@ const daysOfWeek = [
 	"WED",
 	"THU",
 	"FRI",
-	"SAT",
-];
+	"SAT"];
 const monthsOfYear = [
 	"JAN",
 	"FEB",
@@ -30,10 +33,11 @@ const monthsOfYear = [
 	"SEP",
 	"OCT",
 	"NOV",
-	"DEC"
+	"DEC",
 ];
 const dayName = daysOfWeek[dayOfWeek];
 const monthName = monthsOfYear[todayDate.getMonth()];
+const year = todayDate.getFullYear();
 
 let monLeft = 0,
 	tueLeft = 0,
@@ -77,43 +81,42 @@ do {
 } while (currentDate <= endDate);
 
 const publicHoliday = 1;
-let workDaysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft - publicHoliday;
+let workDaysLeft =
+	monLeft + tueLeft + wedLeft + thuLeft + friLeft - publicHoliday;
 workDaysLeft = Math.max(workDaysLeft, 0);
 
-if (workDaysLeft <= 4)
-{
+if (workDaysLeft <= 4) {
 	workDaysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft;
-	console.log(todayDate.getMonth());
 }
 const daysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft + satLeft + sunLeft;
 
 const redirectToMonth = true;
 if (redirectToMonth) {
 	switch (todayDate.getMonth()) {
-	case 0:
-		return Astro.redirect('/january');
-	case 1:
-		return Astro.redirect('/february');
-	case 2:
-		return Astro.redirect('/march');
-	case 3:
-		return Astro.redirect('/april');
-	case 4:
-		return Astro.redirect('/may');
-	case 5:
-		return Astro.redirect('/june');
-	case 6:
-		return Astro.redirect('/july');
-	case 7:
-		return Astro.redirect('/august');
-	case 8:
-		return Astro.redirect('/september');
-	case 9:
-		return Astro.redirect('/october');
-	case 10:
-		return Astro.redirect('/november');
-	case 11:
-		return Astro.redirect('/december');
+		case 0:
+			return Astro.redirect('/january');
+		case 1:
+			return Astro.redirect('/february');
+		case 2:
+			return Astro.redirect('/march');
+		case 3:
+			return Astro.redirect('/april');
+		case 4:
+			return Astro.redirect('/may');
+		case 5:
+			return Astro.redirect('/june');
+		case 6:
+			return Astro.redirect('/july');
+		case 7:
+			return Astro.redirect('/august');
+		case 8:
+			return Astro.redirect('/september');
+		case 9:
+			return Astro.redirect('/october');
+		case 10:
+			return Astro.redirect('/november');
+		case 11:
+			return Astro.redirect('/december');
 	}
 }
 ---
