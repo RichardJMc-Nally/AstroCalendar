@@ -5,6 +5,9 @@ import CalendarMainGrid from "../layouts/CalendarMainGrid.astro";
 import CalendarLeftGrid from "../layouts/CalendarLeftGrid.astro";
 import CalendarRightGrid from "../layouts/CalendarRightGrid.astro";
 import Cell from "../components/Cell.astro";
+import Counter from "../components/Counter.astro";
+import MonthNavigation from "../components/MonthNavigation.astro";
+import DateDisplay from "../components/DateDisplay.astro";
 
 const todayDate = new Date();
 const endDate = new Date("2024-12-21");
@@ -35,6 +38,7 @@ const monthsOfYear = [
 ];
 const dayName = daysOfWeek[dayOfWeek];
 const monthName = monthsOfYear[todayDate.getMonth()];
+const year = todayDate.getFullYear();
 
 let monLeft = 0,
 	tueLeft = 0,
@@ -86,11 +90,6 @@ if (workDaysLeft <= 4)
 	workDaysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft;
 }
 const daysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft + satLeft + sunLeft;
-
-const redirectToMonth = false;
-if (redirectToMonth) {
-	return Astro.redirect('/monthTwo');
-}
 ---
 
 <html lang="en">
@@ -99,76 +98,34 @@ if (redirectToMonth) {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Calendar</title>
+		<title>March {year}</title>
 	</head>
 	<body>
 		<BaseLayout>
 			<CalendarMainGrid>
 				<CalendarLeftGrid slot="gridL">
 					<div class="top__container" slot="gridTop">
-						<div class="inner__topContainer">
-							<div class="todays__day">{dayName}</div>
-							<div class="todays__day">{monthName}</div>
-						</div>
-						<div class="todays__date">{dayNumber}</div>
+						<DateDisplay dayName={dayName} monthName={monthName} dayNumber={dayNumber} />
 					</div>
 					<div class="bottom__container" slot="gridBottom">
-						<div class="inner__container">
-							<div class="counter__lbl">Work Days Left:</div>
-							<div class="counter__text">{workDaysLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Total Days Left:</div>
-							<div class="counter__text">{daysLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Mondays:</div>
-							<div class="counter__text">{monLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Tuesdays:</div>
-							<div class="counter__text">{tueLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Wednesdays:</div>
-							<div class="counter__text">{wedLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Thursdays:</div>
-							<div class="counter__text">{thuLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Fridays:</div>
-							<div class="counter__text">{friLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Saturdays:</div>
-							<div class="counter__text">{satLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Sundays:</div>
-							<div class="counter__text">{sunLeft}</div>
-						</div>
+						<Counter label="Work Days Left" value={workDaysLeft} />
+						<Counter label="Total Days Left" value={daysLeft} />
+						<Counter label="Mondays" value={monLeft} />
+						<Counter label="Tuesdays" value={tueLeft} />
+						<Counter label="Wednesdays" value={wedLeft} />
+						<Counter label="Thursdays" value={thuLeft} />
+						<Counter label="Fridays" value={friLeft} />
+						<Counter label="Saturdays" value={satLeft} />
+						<Counter label="Sundays" value={sunLeft} />
 					</div>
 				</CalendarLeftGrid>
 				<CalendarRightGrid slot="gridR">
 					<div class="year__container" slot="cell1">
 						<div class="year__text">2024</div>
 					</div>
-					<div class="months" slot="cell2">
-						<a href="/january/"><div class="month">JAN</div></a>
-						<a href="/february/"><div class="month">FEB</div></a>
-						<a href="/march/"><div class="month current__month">MAR</div></a>
-						<a href="/april/"><div class="month">APR</div></a>
-						<a href="/may/"><div class="month">MAY</div></a>
-						<a href="/june/"><div class="month">JUN</div></a>
-						<a href="/july/"><div class="month">JUL</div></a>
-						<a href="/august/"><div class="month">AUG</div></a>
-						<a href="/september/"><div class="month">SEP</div></a>
-						<a href="/october/"><div class="month">OCT</div></a>
-						<a href="/november/"><div class="month">NOV</div></a>
-						<a href="/december/"><div class="month">DEC</div></a>
-					</div>
+
+					<MonthNavigation slot="cell2" />
+
 					<div class="heading__cell" slot="cell3">MON</div>
 					<div class="heading__cell" slot="cell4">TUE</div>
 					<div class="heading__cell" slot="cell5">WED</div>
@@ -253,33 +210,6 @@ if (redirectToMonth) {
 		border-top-left-radius: 20px;
 	}
 
-	.inner__topContainer {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		gap: 10px;
-	}
-
-	.todays__date {
-		font-size: 150px;
-		color: #ffffff;
-		font-weight: 700;
-		line-height: 0.8;
-	}
-	.todays__day {
-		font-size: 30px;
-		font-weight: bold;
-		color: #000000;
-	}
-
-	.todays__day:first-of-type {
-		color: #FF3C3C;
-	}
-
-	.todays__day:nth-of-type(2) {
-		color: #707070
-	}
 	.bottom__container {
 		display: flex;
 		align-items: center;
@@ -289,23 +219,6 @@ if (redirectToMonth) {
 		width: 100%;
 		border-bottom-left-radius: 20px;
 		gap: 10px;
-	}
-	.inner__container {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		width: 65%;
-	}
-	.counter__lbl {
-		font-size: 20px;
-		font-weight: bold;
-		color: #ffffff;
-	}
-
-	.counter__text {
-		font-size: 20px;
-		font-weight: bold;
-		color: #ffffff;
 	}
 	/* Calendar Left */
 	/* Calendar Right */
@@ -322,88 +235,15 @@ if (redirectToMonth) {
 		color: #808080;
 	}
 
-	.months {
-		display: flex;
-		align-items: center;
-		justify-content: space-evenly;
-		width: 100%;
-		height: 90%;
-		border-bottom: 2px solid #707070;
-		padding-bottom: 6px;
-		overflow: hidden;
-	}
-
-	.month {
-		font-size: 20px;
-		font-weight: bold;
-		color: #707070;
-		margin: 0 8px;
-	}
-	.current__month {
-		color: #2ecc71;
-	}
 	.heading__cell {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		width: 100%;
 		height: 100%;
-		font-size: 16px;
+		font-size: 28px;
 		font-weight: bold;
 		color: #808080;
-	}
-	.cell {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-		box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-		border-radius: 20px;
-	}
-
-	.cell__text {
-		font-size: 18px;
-		font-weight: bold;
-		color: #3B3B3B;
-	}
-
-	.checkedOff {
-		box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25) inset !important;
-		background-color: #f5f5f5;
-	}
-
-	.triangleL {
-		width: 0;
-		height: 0;
-		border-top: 5px solid transparent;
-		border-right: 10px solid #e8e8e8;
-		border-bottom: 5px solid transparent;
-		margin-right: 10px;
-	}
-
-	.triangleL:hover {
-		border-right: 10px solid #2ecc71;
-	}
-
-	.triangleR {
-		width: 0;
-		height: 0;
-		border-top: 5px solid transparent;
-		border-left: 10px solid #e8e8e8;
-		border-bottom: 5px solid transparent;
-		margin-left: 10px;
-	}
-	.triangleR:hover {
-		border-left: 10px solid #2ecc71;
-	}
-
-	a {
-		text-decoration: none;
-	}
-
-	.pre__postDate {
-		color: #FF3C3C !important;
 	}
 	/* Calendar Right */
 </style>
