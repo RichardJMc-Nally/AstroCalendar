@@ -8,6 +8,8 @@ import Cell from "../components/Cell.astro";
 import Counter from "../components/Counter.astro";
 import MonthNavigation from "../components/MonthNavigation.astro";
 import DateDisplay from "../components/DateDisplay.astro";
+import DayDisplay from "../components/DayDisplay.astro";
+import YearDisplay from "../components/YearDisplay.astro";
 
 const todayDate = new Date();
 const endDate = new Date("2024-12-21");
@@ -121,22 +123,20 @@ const daysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft + satLeft + sun
 					</div>
 				</CalendarLeftGrid>
 				<CalendarRightGrid slot="gridR">
-					<div class="year__container" slot="cell1">
-						<div class="year__text">{year}</div>
-					</div>
-					
+					<YearDisplay slot="cell1" currentYear={year} />
+
 					<MonthNavigation slot="cell2" />
 
-					<div class="heading__cell" slot="cell3">MON</div>
-					<div class="heading__cell" slot="cell4">TUE</div>
-					<div class="heading__cell" slot="cell5">WED</div>
-					<div class="heading__cell" slot="cell6">THU</div>
-					<div class="heading__cell" slot="cell7">FRI</div>
-					<div class="heading__cell" slot="cell8">SAT</div>
-					<div class="heading__cell" slot="cell9">SUN</div>
+					<DayDisplay slot="cell3" day={daysOfWeek[1]} />
+					<DayDisplay slot="cell4" day={daysOfWeek[2]} />
+					<DayDisplay slot="cell5" day={daysOfWeek[3]} />
+					<DayDisplay slot="cell6" day={daysOfWeek[4]} />
+					<DayDisplay slot="cell7" day={daysOfWeek[5]} />
+					<DayDisplay slot="cell8" day={daysOfWeek[6]} />
+					<DayDisplay slot="cell9" day={daysOfWeek[0]} />
 
 					<!-- Week 1 -->
-					<Cell slot="cell10" isCheckedOff={true} number={1} isPrePost={false} />
+					<Cell slot="cell10" isCheckedOff={true} number={1} isPrePost={false} isPubHoliday={true} />
 					<Cell slot="cell11" isCheckedOff={true} number={2} isPrePost={false} />
 					<Cell slot="cell12" isCheckedOff={true} number={3} isPrePost={false} />
 					<Cell slot="cell13" isCheckedOff={true} number={4} isPrePost={false} />
@@ -168,7 +168,7 @@ const daysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft + satLeft + sun
 					<Cell slot="cell33" isCheckedOff={true} number={24} isPrePost={false} />
 					<Cell slot="cell34" isCheckedOff={true} number={25} isPrePost={false} />
 					<Cell slot="cell35" isCheckedOff={true} number={26} isPrePost={false} />
-					<Cell slot="cell36" isCheckedOff={true} number={27} isPrePost={false} />
+					<Cell slot="cell36" isCheckedOff={true} number={27} isPrePost={false} isPubHoliday={true} />
 					<Cell slot="cell37" isCheckedOff={true} number={28} isPrePost={false} />
 					
 					<!-- Week 5 -->

@@ -1,11 +1,11 @@
 ---
 import "../styles/global.css";
 
-const { isCheckedOff = false, number = null, isPrePost = false, extraClass = '' } = Astro.props;
+const { isCheckedOff = false, number = null, isPrePost = false, isPubHoliday = false } = Astro.props;
 
-const textClass = `cell__text ${isPrePost ? 'pre__postDate' : ''}`;
+const textClass = `cell__text ${isPrePost ? 'pre__postDate' : ''} ${isPubHoliday ? 'publicHoliday' : ''}`;
 
-const cellClassList = `cell ${isCheckedOff ? 'checkedOff' : ''} ${extraClass}`;
+const cellClassList = `cell ${isCheckedOff ? 'checkedOff' : ''}`;
 ---
 
 <div class={cellClassList}>
@@ -37,6 +37,10 @@ const cellClassList = `cell ${isCheckedOff ? 'checkedOff' : ''} ${extraClass}`;
   .pre__postDate {
 		color: #FF3C3C !important;
 	}
+
+  .publicHoliday {
+    color: #54E4E4 !important;
+  }
 </style>
 
 <!-- Usage: -->
