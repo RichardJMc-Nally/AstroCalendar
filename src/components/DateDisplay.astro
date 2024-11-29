@@ -20,7 +20,7 @@ const { dayName, monthName, dayNumber } = Astro.props;
 
 	.todays__date {
 		font-size: 150px;
-		color: #ffffff;
+		color: var(--white);
 		font-weight: 700;
 		line-height: 0.8;
 	}
@@ -28,14 +28,13 @@ const { dayName, monthName, dayNumber } = Astro.props;
 	.todays__day {
 		font-size: 30px;
 		font-weight: bold;
-		color: #000000;
 	}
 
 	.todays__day:first-of-type {
-		color: #FF3C3C;
+		color: var(--red);
 	}
 
 	.todays__day:nth-of-type(2) {
-		color: #707070
+		color: var(--grey)
 	}
 </style>

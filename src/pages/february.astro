@@ -122,9 +122,9 @@ const daysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft + satLeft + sun
 					</div>
 				</CalendarLeftGrid>
 				<CalendarRightGrid slot="gridR">
-					<YearDisplay slot="cell1" currrentYear={year} />
+					<YearDisplay slot="cell1" currentYear={year} />
 					
-					<MonthNavigation slot="cell2" />
+					<MonthNavigation slot="cell2" monthName="FEB" />
 
 					<DayDisplay slot="cell3" day={daysOfWeek[1]} />
 					<DayDisplay slot="cell4" day={daysOfWeek[2]} />
