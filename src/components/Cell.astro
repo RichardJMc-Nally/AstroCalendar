@@ -1,11 +1,11 @@
 ---
 import "../styles/global.css";
 
-const { isCheckedOff = false, number = null, isPrePost = false, extraClass = '' } = Astro.props;
+const { isCheckedOff = false, number = null, isPrePost = false, isPubHoliday = false } = Astro.props;
 
-const textClass = `cell__text ${isPrePost ? 'pre__postDate' : ''}`;
+const textClass = `cell__text ${isPrePost ? 'pre__postDate' : ''} ${isPubHoliday ? 'publicHoliday' : ''}`;
 
-const cellClassList = `cell ${isCheckedOff ? 'checkedOff' : ''} ${extraClass}`;
+const cellClassList = `cell ${isCheckedOff ? 'checkedOff' : ''}`;
 ---
 
 <div class={cellClassList}>
@@ -19,24 +19,28 @@ const cellClassList = `cell ${isCheckedOff ? 'checkedOff' : ''} ${extraClass}`;
     justify-content: center;
     width: 100%;
     height: 100%;
-    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 2px 4px 0px var(--transparent-black);
     border-radius: 20px;
   }
 
   .checkedOff {
-		box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25) inset !important;
-		background-color: #f5f5f5;
+		box-shadow: 0px 2px 4px 0px var(--transparent-black) inset !important;
+		background-color: var(--background-colour);
 	}
 
   .cell__text {
-		font-size: 18px;
+		font-size: 22px;
 		font-weight: bold;
-		color: #3B3B3B;
+		color: var(--dark-grey);
 	}
 
   .pre__postDate {
-		color: #FF3C3C !important;
+		color: var(--red) !important;
 	}
+
+  .publicHoliday {
+    color: var(--teal) !important;
+  }
 </style>
 
 <!-- Usage: -->

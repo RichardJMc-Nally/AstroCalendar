@@ -1,0 +1,51 @@
+---
+const months = [
+	{ name: "JAN", link: "/january/" },
+	{ name: "FEB", link: "/february/" },
+	{ name: "MAR", link: "/march/" },
+	{ name: "APR", link: "/april/" },
+	{ name: "MAY", link: "/may/" },
+	{ name: "JUN", link: "/june/" },
+	{ name: "JUL", link: "/july/" },
+	{ name: "AUG", link: "/august/" },
+	{ name: "SEP", link: "/september/" },
+	{ name: "OCT", link: "/october/" },
+	{ name: "NOV", link: "/november/" },
+	{ name: "DEC", link: "/december/" },
+];
+
+const currentMonth = Astro.props.monthName || '';
+---
+
+<div class="months">
+  {months.map(month => (
+    <a href={month.link}>
+      <div class={`month ${month.name === currentMonth ? 'current__month' : ''}`}>
+        {month.name}
+      </div>
+    </a>
+  ))}
+</div>
+
+<style>
+  .months {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+		width: 100%;
+		height: 90%;
+		border-bottom: 2px solid var(--grey);
+		padding-bottom: 6px;
+		overflow: hidden;
+	}
+
+	.month {
+		font-size: 20px;
+		font-weight: bold;
+		color: var(--grey);
+		margin: 0 8px;
+	}
+	.current__month {
+		color: var(--green);
+	}
+</style>

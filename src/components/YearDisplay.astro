@@ -1,0 +1,24 @@
+---
+import "../styles/global.css";
+const { currentYear } = Astro.props;
+---
+
+<div class="year__container">
+  <div class="year__text">{currentYear}</div>
+</div>
+
+<style>
+  .year__container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+	}
+
+	.year__text {
+		font-size: 30px;
+		font-weight: bold;
+		color: var(--grey2);
+	}
+</style>

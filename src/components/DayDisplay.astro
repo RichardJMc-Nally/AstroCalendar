@@ -1,0 +1,19 @@
+---
+import "../styles/global.css";
+const { day } = Astro.props; 
+---
+
+<div class="heading__cell">{day}</div>
+
+<style>
+  .heading__cell {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		font-size: 28px;
+		font-weight: bold;
+		color: var(--grey2);
+	}
+</style>

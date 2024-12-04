@@ -4,6 +4,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import CalendarMainGrid from "../layouts/CalendarMainGrid.astro";
 import CalendarLeftGrid from "../layouts/CalendarLeftGrid.astro";
 import CalendarRightGrid from "../layouts/CalendarRightGrid.astro";
+import Cell from "../components/Cell.astro";
+import Counter from "../components/Counter.astro";
+import MonthNavigation from "../components/MonthNavigation.astro";
+import DateDisplay from "../components/DateDisplay.astro";
 
 const todayDate = new Date();
 const endDate = new Date("2024-12-21");
@@ -16,8 +20,7 @@ const daysOfWeek = [
 	"WED",
 	"THU",
 	"FRI",
-	"SAT",
-];
+	"SAT"];
 const monthsOfYear = [
 	"JAN",
 	"FEB",
@@ -30,10 +33,11 @@ const monthsOfYear = [
 	"SEP",
 	"OCT",
 	"NOV",
-	"DEC"
+	"DEC",
 ];
 const dayName = daysOfWeek[dayOfWeek];
 const monthName = monthsOfYear[todayDate.getMonth()];
+const year = todayDate.getFullYear();
 
 let monLeft = 0,
 	tueLeft = 0,
@@ -77,43 +81,42 @@ do {
 } while (currentDate <= endDate);
 
 const publicHoliday = 1;
-let workDaysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft - publicHoliday;
+let workDaysLeft =
+	monLeft + tueLeft + wedLeft + thuLeft + friLeft - publicHoliday;
 workDaysLeft = Math.max(workDaysLeft, 0);
 
-if (workDaysLeft <= 4)
-{
+if (workDaysLeft <= 4) {
 	workDaysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft;
-	console.log(todayDate.getMonth());
 }
 const daysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft + satLeft + sunLeft;
 
 const redirectToMonth = true;
 if (redirectToMonth) {
 	switch (todayDate.getMonth()) {
-	case 0:
-		return Astro.redirect('/january');
-	case 1:
-		return Astro.redirect('/february');
-	case 2:
-		return Astro.redirect('/march');
-	case 3:
-		return Astro.redirect('/april');
-	case 4:
-		return Astro.redirect('/may');
-	case 5:
-		return Astro.redirect('/june');
-	case 6:
-		return Astro.redirect('/july');
-	case 7:
-		return Astro.redirect('/august');
-	case 8:
-		return Astro.redirect('/september');
-	case 9:
-		return Astro.redirect('/october');
-	case 10:
-		return Astro.redirect('/november');
-	case 11:
-		return Astro.redirect('/december');
+		case 0:
+			return Astro.redirect('/january');
+		case 1:
+			return Astro.redirect('/february');
+		case 2:
+			return Astro.redirect('/march');
+		case 3:
+			return Astro.redirect('/april');
+		case 4:
+			return Astro.redirect('/may');
+		case 5:
+			return Astro.redirect('/june');
+		case 6:
+			return Astro.redirect('/july');
+		case 7:
+			return Astro.redirect('/august');
+		case 8:
+			return Astro.redirect('/september');
+		case 9:
+			return Astro.redirect('/october');
+		case 10:
+			return Astro.redirect('/november');
+		case 11:
+			return Astro.redirect('/december');
 	}
 }
 ---
@@ -280,33 +283,6 @@ if (redirectToMonth) {
 		border-top-left-radius: 20px;
 	}
 
-	.inner__topContainer {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		gap: 10px;
-	}
-
-	.todays__date {
-		font-size: 150px;
-		color: #ffffff;
-		font-weight: 700;
-		line-height: 0.8;
-	}
-	.todays__day {
-		font-size: 30px;
-		font-weight: bold;
-		color: #000000;
-	}
-
-	.todays__day:first-of-type {
-		color: #FF3C3C;
-	}
-
-	.todays__day:nth-of-type(2) {
-		color: #707070
-	}
 	.bottom__container {
 		display: flex;
 		align-items: center;
@@ -316,23 +292,6 @@ if (redirectToMonth) {
 		width: 100%;
 		border-bottom-left-radius: 20px;
 		gap: 10px;
-	}
-	.inner__container {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		width: 65%;
-	}
-	.counter__lbl {
-		font-size: 20px;
-		font-weight: bold;
-		color: #ffffff;
-	}
-
-	.counter__text {
-		font-size: 20px;
-		font-weight: bold;
-		color: #ffffff;
 	}
 	/* Calendar Left */
 	/* Calendar Right */
@@ -348,27 +307,7 @@ if (redirectToMonth) {
 		font-weight: bold;
 		color: #808080;
 	}
-
-	.months {
-		display: flex;
-		align-items: center;
-		justify-content: space-evenly;
-		width: 100%;
-		height: 90%;
-		border-bottom: 2px solid #707070;
-		padding-bottom: 6px;
-		overflow: hidden;
-	}
-
-	.month {
-		font-size: 20px;
-		font-weight: bold;
-		color: #707070;
-		margin: 0 8px;
-	}
-	.current__month {
-		color: #2ecc71;
-	}
+	
 	.heading__cell {
 		display: flex;
 		align-items: center;
@@ -378,59 +317,6 @@ if (redirectToMonth) {
 		font-size: 16px;
 		font-weight: bold;
 		color: #808080;
-	}
-	.cell {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-		box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-		border-radius: 20px;
-	}
-
-	.cell__text {
-		font-size: 18px;
-		font-weight: bold;
-		color: #3B3B3B;
-	}
-
-	.checkedOff {
-		box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25) inset !important;
-		background-color: #f5f5f5;
-	}
-
-	.triangleL {
-		width: 0;
-		height: 0;
-		border-top: 5px solid transparent;
-		border-right: 10px solid #e8e8e8;
-		border-bottom: 5px solid transparent;
-		margin-right: 10px;
-	}
-
-	.triangleL:hover {
-		border-right: 10px solid #2ecc71;
-	}
-
-	.triangleR {
-		width: 0;
-		height: 0;
-		border-top: 5px solid transparent;
-		border-left: 10px solid #e8e8e8;
-		border-bottom: 5px solid transparent;
-		margin-left: 10px;
-	}
-	.triangleR:hover {
-		border-left: 10px solid #2ecc71;
-	}
-
-	a {
-		text-decoration: none;
-	}
-
-	.pre__postDate {
-		color: #FF3C3C !important;
 	}
 	/* Calendar Right */
 </style>

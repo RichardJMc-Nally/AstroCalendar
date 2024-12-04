@@ -1,0 +1,29 @@
+---
+const { label, value } = Astro.props;
+---
+
+<div class="inner__container">
+  <div class="counter__lbl">{label}:</div>
+  <div class="counter__text">{value}</div>
+</div>
+
+<style>
+  .inner__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 65%;
+  }
+
+  .counter__lbl {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--white);
+  }
+
+  .counter__text {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--white);
+  }
+</style>

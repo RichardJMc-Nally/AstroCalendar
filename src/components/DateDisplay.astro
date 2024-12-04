@@ -1,0 +1,40 @@
+---
+import "../styles/global.css";
+const { dayName, monthName, dayNumber } = Astro.props;
+---
+
+<div class="inner__topContainer">
+  <div class="todays__day">{dayName}</div>
+  <div class="todays__day">{monthName}</div>
+</div>
+<div class="todays__date">{dayNumber}</div>
+
+<style>
+  .inner__topContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		gap: 10px;
+	}
+
+	.todays__date {
+		font-size: 150px;
+		color: var(--white);
+		font-weight: 700;
+		line-height: 0.8;
+	}
+
+	.todays__day {
+		font-size: 30px;
+		font-weight: bold;
+	}
+
+	.todays__day:first-of-type {
+		color: var(--red);
+	}
+
+	.todays__day:nth-of-type(2) {
+		color: var(--grey)
+	}
+</style>

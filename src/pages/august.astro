@@ -4,6 +4,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import CalendarMainGrid from "../layouts/CalendarMainGrid.astro";
 import CalendarLeftGrid from "../layouts/CalendarLeftGrid.astro";
 import CalendarRightGrid from "../layouts/CalendarRightGrid.astro";
+import Cell from "../components/Cell.astro";
+import Counter from "../components/Counter.astro";
+import MonthNavigation from "../components/MonthNavigation.astro";
+import DateDisplay from "../components/DateDisplay.astro";
+import DayDisplay from "../components/DayDisplay.astro";
+import YearDisplay from "../components/YearDisplay.astro";
 
 const todayDate = new Date();
 const endDate = new Date("2024-12-21");
@@ -34,6 +40,7 @@ const monthsOfYear = [
 ];
 const dayName = daysOfWeek[dayOfWeek];
 const monthName = monthsOfYear[todayDate.getMonth()];
+const year = todayDate.getFullYear();
 
 let monLeft = 0,
 	tueLeft = 0,
@@ -85,11 +92,6 @@ if (workDaysLeft <= 4)
 	workDaysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft;
 }
 const daysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft + satLeft + sunLeft;
-
-const redirectToMonth = false;
-if (redirectToMonth) {
-	return Astro.redirect('/monthTwo');
-}
 ---
 
 <html lang="en">
@@ -98,137 +100,93 @@ if (redirectToMonth) {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Calendar</title>
+		<title>August {year}</title>
 	</head>
 	<body>
 		<BaseLayout>
 			<CalendarMainGrid>
 				<CalendarLeftGrid slot="gridL">
 					<div class="top__container" slot="gridTop">
-						<div class="inner__topContainer">
-							<div class="todays__day">{dayName}</div>
-							<div class="todays__day">{monthName}</div>
-						</div>
-						<div class="todays__date">{dayNumber}</div>
+						<DateDisplay dayName={dayName} monthName={monthName} dayNumber={dayNumber} />
 					</div>
 					<div class="bottom__container" slot="gridBottom">
-						<div class="inner__container">
-							<div class="counter__lbl">Work Days Left:</div>
-							<div class="counter__text">{workDaysLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Total Days Left:</div>
-							<div class="counter__text">{daysLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Mondays:</div>
-							<div class="counter__text">{monLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Tuesdays:</div>
-							<div class="counter__text">{tueLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Wednesdays:</div>
-							<div class="counter__text">{wedLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Thursdays:</div>
-							<div class="counter__text">{thuLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Fridays:</div>
-							<div class="counter__text">{friLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Saturdays:</div>
-							<div class="counter__text">{satLeft}</div>
-						</div>
-						<div class="inner__container">
-							<div class="counter__lbl">Sundays:</div>
-							<div class="counter__text">{sunLeft}</div>
-						</div>
+						<Counter label="Work Days Left" value={workDaysLeft} />
+						<Counter label="Total Days Left" value={daysLeft} />
+						<Counter label="Mondays" value={monLeft} />
+						<Counter label="Tuesdays" value={tueLeft} />
+						<Counter label="Wednesdays" value={wedLeft} />
+						<Counter label="Thursdays" value={thuLeft} />
+						<Counter label="Fridays" value={friLeft} />
+						<Counter label="Saturdays" value={satLeft} />
+						<Counter label="Sundays" value={sunLeft} />
 					</div>
 				</CalendarLeftGrid>
 				<CalendarRightGrid slot="gridR">
-					<div class="year__container" slot="cell1">
-						<div class="year__text">2024</div>
-					</div>
-					<div class="months" slot="cell2">
-						<a href="/january/"><div class="month">JAN</div></a>
-						<a href="/february/"><div class="month">FEB</div></a>
-						<a href="/march/"><div class="month">MAR</div></a>
-						<a href="/april/"><div class="month">APR</div></a>
-						<a href="/may/"><div class="month">MAY</div></a>
-						<a href="/june/"><div class="month">JUN</div></a>
-						<a href="/july/"><div class="month">JUL</div></a>
-						<a href="/august/"><div class="month current__month">AUG</div></a>
-						<a href="/september/"><div class="month">SEP</div></a>
-						<a href="/october/"><div class="month">OCT</div></a>
-						<a href="/november/"><div class="month">NOV</div></a>
-						<a href="/december/"><div class="month">DEC</div></a>
-					</div>
-					<div class="heading__cell" slot="cell3">MON</div>
-					<div class="heading__cell" slot="cell4">TUE</div>
-					<div class="heading__cell" slot="cell5">WED</div>
-					<div class="heading__cell" slot="cell6">THU</div>
-					<div class="heading__cell" slot="cell7">FRI</div>
-					<div class="heading__cell" slot="cell8">SAT</div>
-					<div class="heading__cell" slot="cell9">SUN</div>
+					<YearDisplay slot="cell1" currentYear={year} />
+
+					<MonthNavigation slot="cell2" monthName="AUG" />
+
+					<DayDisplay slot="cell3" day={daysOfWeek[1]} />
+					<DayDisplay slot="cell4" day={daysOfWeek[2]} />
+					<DayDisplay slot="cell5" day={daysOfWeek[3]} />
+					<DayDisplay slot="cell6" day={daysOfWeek[4]} />
+					<DayDisplay slot="cell7" day={daysOfWeek[5]} />
+					<DayDisplay slot="cell8" day={daysOfWeek[6]} />
+					<DayDisplay slot="cell9" day={daysOfWeek[0]} />
 
 					<!-- Week 1 -->
-					<div class="cell checkedOff" slot="cell10"><div class="cell__text pre__postDate">29</div></div>
-					<div class="cell checkedOff" slot="cell11"><div class="cell__text pre__postDate">30</div></div>
-					<div class="cell checkedOff" slot="cell12"><div class="cell__text pre__postDate">31</div></div>
-					<div class="cell checkedOff" slot="cell13"><div class="cell__text">1</div></div>
-					<div class="cell checkedOff" slot="cell14"><div class="cell__text">2</div></div>
-					<div class="cell checkedOff" slot="cell15"><div class="cell__text">3</div></div>
-					<div class="cell checkedOff" slot="cell16"><div class="cell__text">4</div></div>
+					<Cell slot="cell10" isCheckedOff={true} number={29} isPrePost={true} />
+					<Cell slot="cell11" isCheckedOff={true} number={30} isPrePost={true} />
+					<Cell slot="cell12" isCheckedOff={true} number={31} isPrePost={true} />
+					<Cell slot="cell13" isCheckedOff={true} number={1} isPrePost={false} />
+					<Cell slot="cell14" isCheckedOff={true} number={2} isPrePost={false} />
+					<Cell slot="cell15" isCheckedOff={true} number={3} isPrePost={false} />
+					<Cell slot="cell16" isCheckedOff={true} number={4} isPrePost={false} />
 					
 					<!-- Week 2 -->
-					<div class="cell checkedOff" slot="cell17"><div class="cell__text">5</div></div>
-					<div class="cell checkedOff" slot="cell18"><div class="cell__text">6</div></div>
-					<div class="cell checkedOff" slot="cell19"><div class="cell__text">7</div></div>
-					<div class="cell checkedOff" slot="cell20"><div class="cell__text">8</div></div>
-					<div class="cell checkedOff" slot="cell21"><div class="cell__text">9</div></div>
-					<div class="cell checkedOff" slot="cell22"><div class="cell__text">10</div></div>
-					<div class="cell checkedOff" slot="cell23"><div class="cell__text">11</div></div>
+					<Cell slot="cell17" isCheckedOff={true} number={5} isPrePost={false} />
+					<Cell slot="cell18" isCheckedOff={true} number={6} isPrePost={false} />
+					<Cell slot="cell19" isCheckedOff={true} number={7} isPrePost={false} />
+					<Cell slot="cell20" isCheckedOff={true} number={8} isPrePost={false} />
+					<Cell slot="cell21" isCheckedOff={true} number={9} isPrePost={false} isPubHoliday={true} />
+					<Cell slot="cell22" isCheckedOff={true} number={10} isPrePost={false} />
+					<Cell slot="cell23" isCheckedOff={true} number={11} isPrePost={false} />
 
 					<!-- Week 3 -->
-					<div class="cell checkedOff" slot="cell24"><div class="cell__text">12</div></div>
-					<div class="cell checkedOff" slot="cell25"><div class="cell__text">13</div></div>
-					<div class="cell checkedOff" slot="cell26"><div class="cell__text">14</div></div>
-					<div class="cell checkedOff" slot="cell27"><div class="cell__text">15</div></div>
-					<div class="cell checkedOff" slot="cell28"><div class="cell__text">16</div></div>
-					<div class="cell checkedOff" slot="cell29"><div class="cell__text">17</div></div>
-					<div class="cell checkedOff" slot="cell30"><div class="cell__text">18</div></div>
+					<Cell slot="cell24" isCheckedOff={true} number={12} isPrePost={false} />
+					<Cell slot="cell25" isCheckedOff={true} number={13} isPrePost={false} />
+					<Cell slot="cell26" isCheckedOff={true} number={14} isPrePost={false} />
+					<Cell slot="cell27" isCheckedOff={true} number={15} isPrePost={false} />
+					<Cell slot="cell28" isCheckedOff={true} number={16} isPrePost={false} />
+					<Cell slot="cell29" isCheckedOff={true} number={17} isPrePost={false} />
+					<Cell slot="cell30" isCheckedOff={true} number={18} isPrePost={false} />
 
 					<!-- Week 4 -->
-					<div class="cell checkedOff" slot="cell31"><div class="cell__text">19</div></div>
-					<div class="cell checkedOff" slot="cell32"><div class="cell__text">20</div></div>
-					<div class="cell checkedOff" slot="cell33"><div class="cell__text">21</div></div>
-					<div class="cell checkedOff" slot="cell34"><div class="cell__text">22</div></div>
-					<div class="cell checkedOff" slot="cell35"><div class="cell__text">23</div></div>
-					<div class="cell checkedOff" slot="cell36"><div class="cell__text">24</div></div>
-					<div class="cell checkedOff" slot="cell37"><div class="cell__text">25</div></div>
+					<Cell slot="cell31" isCheckedOff={true} number={19} isPrePost={false} />
+					<Cell slot="cell32" isCheckedOff={true} number={20} isPrePost={false} />
+					<Cell slot="cell33" isCheckedOff={true} number={21} isPrePost={false} />
+					<Cell slot="cell34" isCheckedOff={true} number={22} isPrePost={false} />
+					<Cell slot="cell35" isCheckedOff={true} number={23} isPrePost={false} />
+					<Cell slot="cell36" isCheckedOff={true} number={24} isPrePost={false} />
+					<Cell slot="cell37" isCheckedOff={true} number={25} isPrePost={false} />
 					
 					<!-- Week 5 -->
-					<div class="cell checkedOff" slot="cell38"><div class="cell__text">26</div></div>
-					<div class="cell checkedOff" slot="cell39"><div class="cell__text">27</div></div>
-					<div class="cell checkedOff" slot="cell40"><div class="cell__text">28</div></div>
-					<div class="cell checkedOff" slot="cell41"><div class="cell__text">29</div></div>
-					<div class="cell checkedOff" slot="cell42"><div class="cell__text">30</div></div>
-					<div class="cell checkedOff" slot="cell43"><div class="cell__text">31</div></div>
-					<div class="cell checkedOff" slot="cell44"><div class="cell__text pre__postDate">1</div></div>
+					<Cell slot="cell38" isCheckedOff={true} number={26} isPrePost={false} />
+					<Cell slot="cell39" isCheckedOff={true} number={27} isPrePost={false} />
+					<Cell slot="cell40" isCheckedOff={true} number={28} isPrePost={false} />
+					<Cell slot="cell41" isCheckedOff={true} number={29} isPrePost={false} />
+					<Cell slot="cell42" isCheckedOff={true} number={30} isPrePost={false} />
+					<Cell slot="cell43" isCheckedOff={true} number={31} isPrePost={false} />
+					<Cell slot="cell44" isCheckedOff={true} number={1} isPrePost={true} />
 
 					<!-- Week 6 -->
-					<div class="cell checkedOff" slot="cell45"><div class="cell__text pre__postDate">2</div></div>
-					<div class="cell checkedOff" slot="cell46"><div class="cell__text pre__postDate">3</div></div>
-					<div class="cell checkedOff" slot="cell47"><div class="cell__text pre__postDate">4</div></div>
-					<div class="cell checkedOff" slot="cell48"><div class="cell__text pre__postDate">5</div></div>
-					<div class="cell checkedOff" slot="cell49"><div class="cell__text pre__postDate">6</div></div>
-					<div class="cell checkedOff" slot="cell50"><div class="cell__text pre__postDate">7</div></div>
-					<div class="cell checkedOff" slot="cell51"><div class="cell__text pre__postDate">8</div></div>
+					<Cell slot="cell45" isCheckedOff={true} number={2} isPrePost={true} />
+					<Cell slot="cell46" isCheckedOff={true} number={3} isPrePost={true} />
+					<Cell slot="cell47" isCheckedOff={true} number={4} isPrePost={true} />
+					<Cell slot="cell48" isCheckedOff={true} number={5} isPrePost={true} />
+					<Cell slot="cell49" isCheckedOff={true} number={6} isPrePost={true} />
+					<Cell slot="cell50" isCheckedOff={true} number={7} isPrePost={true} />
+					<Cell slot="cell51" isCheckedOff={true} number={8} isPrePost={true} />
 				</CalendarRightGrid>
 			</CalendarMainGrid>
 		</BaseLayout>
@@ -252,33 +210,6 @@ if (redirectToMonth) {
 		border-top-left-radius: 20px;
 	}
 
-	.inner__topContainer {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		gap: 10px;
-	}
-
-	.todays__date {
-		font-size: 150px;
-		color: #ffffff;
-		font-weight: 700;
-		line-height: 0.8;
-	}
-	.todays__day {
-		font-size: 30px;
-		font-weight: bold;
-		color: #000000;
-	}
-
-	.todays__day:first-of-type {
-		color: #FF3C3C;
-	}
-
-	.todays__day:nth-of-type(2) {
-		color: #707070
-	}
 	.bottom__container {
 		display: flex;
 		align-items: center;
@@ -289,120 +220,5 @@ if (redirectToMonth) {
 		border-bottom-left-radius: 20px;
 		gap: 10px;
 	}
-	.inner__container {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		width: 65%;
-	}
-	.counter__lbl {
-		font-size: 20px;
-		font-weight: bold;
-		color: #ffffff;
-	}
-
-	.counter__text {
-		font-size: 20px;
-		font-weight: bold;
-		color: #ffffff;
-	}
 	/* Calendar Left */
-	/* Calendar Right */
-	.year__container {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
-	.year__text {
-		font-size: 30px;
-		font-weight: bold;
-		color: #808080;
-	}
-
-	.months {
-		display: flex;
-		align-items: center;
-		justify-content: space-evenly;
-		width: 100%;
-		height: 90%;
-		border-bottom: 2px solid #707070;
-		padding-bottom: 6px;
-		overflow: hidden;
-	}
-
-	.month {
-		font-size: 20px;
-		font-weight: bold;
-		color: #707070;
-		margin: 0 8px;
-	}
-	.current__month {
-		color: #2ecc71;
-	}
-	.heading__cell {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-		font-size: 16px;
-		font-weight: bold;
-		color: #808080;
-	}
-	.cell {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-		box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-		border-radius: 20px;
-	}
-
-	.cell__text {
-		font-size: 18px;
-		font-weight: bold;
-		color: #3B3B3B;
-	}
-
-	.checkedOff {
-		box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25) inset !important;
-		background-color: #f5f5f5;
-	}
-
-	.triangleL {
-		width: 0;
-		height: 0;
-		border-top: 5px solid transparent;
-		border-right: 10px solid #e8e8e8;
-		border-bottom: 5px solid transparent;
-		margin-right: 10px;
-	}
-
-	.triangleL:hover {
-		border-right: 10px solid #2ecc71;
-	}
-
-	.triangleR {
-		width: 0;
-		height: 0;
-		border-top: 5px solid transparent;
-		border-left: 10px solid #e8e8e8;
-		border-bottom: 5px solid transparent;
-		margin-left: 10px;
-	}
-	.triangleR:hover {
-		border-left: 10px solid #2ecc71;
-	}
-
-	a {
-		text-decoration: none;
-	}
-
-	.pre__postDate {
-		color: #FF3C3C !important;
-	}
-	/* Calendar Right */
 </style>

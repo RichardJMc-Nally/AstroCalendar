@@ -8,7 +8,18 @@
 }
 
 :root {
-	font-size: 1rem;
+	font-size: 16px;
+
+	--background-colour: #F5F5F5;
+	--dark-grey: #3B3B3B;
+	--grey: #707070;
+	--grey2: #808080;
+	--blue-grey: #20252C;
+	--red: #FF3C3C;
+	--teal: #54E4E4;
+	--white: #FDFDFD;
+	--green: #2ECC71;
+	--transparent-black: rgba(0,0,0,0.25);
 }
 
 html,
@@ -31,4 +42,8 @@ h6,
 p {
 	margin: 0;
 	padding: 0;
+}
+
+a {
+	text-decoration: none;
 }
