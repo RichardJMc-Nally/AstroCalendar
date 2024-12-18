@@ -1,9 +1,23 @@
 ---
 import "../styles/global.css";
 const { day } = Astro.props; 
+
+const todayDate = new Date();
+const dayOfWeek = todayDate.getDay();
+const daysOfWeek = [
+	"SUN",
+	"MON",
+	"TUE",
+	"WED",
+	"THU",
+	"FRI",
+	"SAT",
+];
+const dayName = daysOfWeek[dayOfWeek];
+const isToday = day === dayName;
 ---
 
-<div class="heading__cell">{day}</div>
+<div class={`heading__cell ${isToday ? 'current__day' : ''}`}>{day}</div>
 
 <style>
   .heading__cell {
@@ -15,5 +29,9 @@ const { day } = Astro.props;
 		font-size: 28px;
 		font-weight: bold;
 		color: var(--grey2);
+	}
+
+	.current__day {
+		color: var(--green);
 	}
 </style>
