@@ -12,7 +12,7 @@ import DayDisplay from "../components/DayDisplay.astro";
 import YearDisplay from "../components/YearDisplay.astro";
 
 const todayDate = new Date();
-const endDate = new Date("2024-12-21");
+const endDate = new Date("2025-01-01");
 const dayNumber = todayDate.getDate();
 const dayOfWeek = todayDate.getDay();
 const daysOfWeek = [
@@ -111,7 +111,7 @@ const daysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft + satLeft + sun
 					</div>
 
 					<div class="bottom__container" slot="gridBottom">
-						<Counter label="Work Days Left" value={workDaysLeft} />
+						<!-- <Counter label="Work Days Left" value={workDaysLeft} /> -->
 						<Counter label="Total Days Left" value={daysLeft} />
 						<Counter label="Mondays" value={monLeft} />
 						<Counter label="Tuesdays" value={tueLeft} />
