@@ -12,7 +12,7 @@ import DayDisplay from "../components/DayDisplay.astro";
 import YearDisplay from "../components/YearDisplay.astro";
 
 const todayDate = new Date();
-const endDate = new Date("2024-12-21");
+const endDate = new Date("2025-12-20");
 const dayNumber = todayDate.getDate();
 const dayOfWeek = todayDate.getDay();
 const daysOfWeek = [
@@ -83,7 +83,7 @@ do {
 	currentDate.setDate(currentDate.getDate() + 1);
 } while (currentDate <= endDate);
 
-const publicHoliday = 1;
+const publicHoliday = 3;
 let workDaysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft - publicHoliday;
 workDaysLeft = Math.max(workDaysLeft, 0);
 
@@ -136,58 +136,58 @@ const daysLeft = monLeft + tueLeft + wedLeft + thuLeft + friLeft + satLeft + sun
 					<DayDisplay slot="cell9" day={daysOfWeek[0]} />
 
 					<!-- Week 1 -->
-					<Cell slot="cell10" isCheckedOff={true} number={27} isPrePost={true} />
-					<Cell slot="cell11" isCheckedOff={true} number={28} isPrePost={true} />
-					<Cell slot="cell12" isCheckedOff={true} number={29} isPrePost={true} />
-					<Cell slot="cell13" isCheckedOff={true} number={30} isPrePost={true} />
-					<Cell slot="cell14" isCheckedOff={true} number={31} isPrePost={true} />
-					<Cell slot="cell15" isCheckedOff={true} number={1} isPrePost={false} />
-					<Cell slot="cell16" isCheckedOff={true} number={2} isPrePost={false} />
+					<Cell slot="cell10" isCheckedOff={false} number={26} isPrePost={true} />
+					<Cell slot="cell11" isCheckedOff={false} number={27} isPrePost={true} />
+					<Cell slot="cell12" isCheckedOff={false} number={28} isPrePost={true} />
+					<Cell slot="cell13" isCheckedOff={false} number={29} isPrePost={true} />
+					<Cell slot="cell14" isCheckedOff={false} number={30} isPrePost={true} />
+					<Cell slot="cell15" isCheckedOff={false} number={31} isPrePost={true} />
+					<Cell slot="cell16" isCheckedOff={false} number={1} isPrePost={false} />
 					
 					<!-- Week 2 -->
-					<Cell slot="cell17" isCheckedOff={true} number={3} isPrePost={false} />
-					<Cell slot="cell18" isCheckedOff={true} number={4} isPrePost={false} />
-					<Cell slot="cell19" isCheckedOff={true} number={5} isPrePost={false} />
-					<Cell slot="cell20" isCheckedOff={true} number={6} isPrePost={false} />
-					<Cell slot="cell21" isCheckedOff={true} number={7} isPrePost={false} />
-					<Cell slot="cell22" isCheckedOff={true} number={8} isPrePost={false} />
-					<Cell slot="cell23" isCheckedOff={true} number={9} isPrePost={false} />
+					<Cell slot="cell17" isCheckedOff={false} number={2} isPrePost={false} />
+					<Cell slot="cell18" isCheckedOff={false} number={3} isPrePost={false} />
+					<Cell slot="cell19" isCheckedOff={false} number={4} isPrePost={false} />
+					<Cell slot="cell20" isCheckedOff={false} number={5} isPrePost={false} />
+					<Cell slot="cell21" isCheckedOff={false} number={6} isPrePost={false} />
+					<Cell slot="cell22" isCheckedOff={false} number={7} isPrePost={false} />
+					<Cell slot="cell23" isCheckedOff={false} number={8} isPrePost={false} />
 
 					<!-- Week 3 -->
-					<Cell slot="cell24" isCheckedOff={true} number={10} isPrePost={false} />
-					<Cell slot="cell25" isCheckedOff={true} number={11} isPrePost={false} />
-					<Cell slot="cell26" isCheckedOff={true} number={12} isPrePost={false} />
-					<Cell slot="cell27" isCheckedOff={true} number={13} isPrePost={false} />
-					<Cell slot="cell28" isCheckedOff={true} number={14} isPrePost={false} />
-					<Cell slot="cell29" isCheckedOff={true} number={15} isPrePost={false} />
-					<Cell slot="cell30" isCheckedOff={true} number={16} isPrePost={false} isPubHoliday={true} />
+					<Cell slot="cell24" isCheckedOff={false} number={9} isPrePost={false} />
+					<Cell slot="cell25" isCheckedOff={false} number={10} isPrePost={false} />
+					<Cell slot="cell26" isCheckedOff={false} number={11} isPrePost={false} />
+					<Cell slot="cell27" isCheckedOff={false} number={12} isPrePost={false} />
+					<Cell slot="cell28" isCheckedOff={false} number={13} isPrePost={false} />
+					<Cell slot="cell29" isCheckedOff={false} number={14} isPrePost={false} />
+					<Cell slot="cell30" isCheckedOff={false} number={15} isPrePost={false} />
 
 					<!-- Week 4 -->
-					<Cell slot="cell31" isCheckedOff={true} number={17} isPrePost={false} isPubHoliday={true} />
-					<Cell slot="cell32" isCheckedOff={true} number={18} isPrePost={false} />
-					<Cell slot="cell33" isCheckedOff={true} number={19} isPrePost={false} />
-					<Cell slot="cell34" isCheckedOff={true} number={20} isPrePost={false} />
-					<Cell slot="cell35" isCheckedOff={true} number={21} isPrePost={false} />
-					<Cell slot="cell36" isCheckedOff={true} number={22} isPrePost={false} />
-					<Cell slot="cell37" isCheckedOff={true} number={23} isPrePost={false} />
+					<Cell slot="cell31" isCheckedOff={false} number={16} isPrePost={false} isPubHoliday={true} />
+					<Cell slot="cell32" isCheckedOff={false} number={17} isPrePost={false} />
+					<Cell slot="cell33" isCheckedOff={false} number={18} isPrePost={false} />
+					<Cell slot="cell34" isCheckedOff={false} number={19} isPrePost={false} />
+					<Cell slot="cell35" isCheckedOff={false} number={20} isPrePost={false} />
+					<Cell slot="cell36" isCheckedOff={false} number={21} isPrePost={false} />
+					<Cell slot="cell37" isCheckedOff={false} number={22} isPrePost={false} />
 					
 					<!-- Week 5 -->
-					<Cell slot="cell38" isCheckedOff={true} number={24} isPrePost={false} />
-					<Cell slot="cell39" isCheckedOff={true} number={25} isPrePost={false} />
-					<Cell slot="cell40" isCheckedOff={true} number={26} isPrePost={false} />
-					<Cell slot="cell41" isCheckedOff={true} number={27} isPrePost={false} />
-					<Cell slot="cell42" isCheckedOff={true} number={28} isPrePost={false} />
-					<Cell slot="cell43" isCheckedOff={true} number={29} isPrePost={false} />
-					<Cell slot="cell44" isCheckedOff={true} number={30} isPrePost={false} />
+					<Cell slot="cell38" isCheckedOff={false} number={23} isPrePost={false} />
+					<Cell slot="cell39" isCheckedOff={false} number={24} isPrePost={false} />
+					<Cell slot="cell40" isCheckedOff={false} number={25} isPrePost={false} />
+					<Cell slot="cell41" isCheckedOff={false} number={26} isPrePost={false} />
+					<Cell slot="cell42" isCheckedOff={false} number={27} isPrePost={false} />
+					<Cell slot="cell43" isCheckedOff={false} number={28} isPrePost={false} />
+					<Cell slot="cell44" isCheckedOff={false} number={29} isPrePost={false} />
 
 					<!-- Week 6 -->
-					<Cell slot="cell45" isCheckedOff={true} number={1} isPrePost={true} />
-					<Cell slot="cell46" isCheckedOff={true} number={2} isPrePost={true} />
-					<Cell slot="cell47" isCheckedOff={true} number={3} isPrePost={true} />
-					<Cell slot="cell48" isCheckedOff={true} number={4} isPrePost={true} />
-					<Cell slot="cell49" isCheckedOff={true} number={5} isPrePost={true} />
-					<Cell slot="cell50" isCheckedOff={true} number={6} isPrePost={true} />
-					<Cell slot="cell51" isCheckedOff={true} number={7} isPrePost={true} />
+					<Cell slot="cell45" isCheckedOff={false} number={30} isPrePost={false} />
+					<Cell slot="cell46" isCheckedOff={false} number={1} isPrePost={true} />
+					<Cell slot="cell47" isCheckedOff={false} number={2} isPrePost={true} />
+					<Cell slot="cell48" isCheckedOff={false} number={3} isPrePost={true} />
+					<Cell slot="cell49" isCheckedOff={false} number={4} isPrePost={true} />
+					<Cell slot="cell50" isCheckedOff={false} number={5} isPrePost={true} />
+					<Cell slot="cell51" isCheckedOff={false} number={6} isPrePost={true} />
 				</CalendarRightGrid>
 			</CalendarMainGrid>
 		</BaseLayout>
